@@ -12,7 +12,7 @@ def F_createdictfromcsv(file):
     """ Returns a dictionary from the csv file, each entry is a line, the keys are indexes (0,...,numlines-1)
         and the content of each entry is a row with all the info (columns) in the csv file. """
     jdict = {}
-    with open(file, 'rb') as csvfile:
+    with open(file, 'rt') as csvfile:
         reader = csv.reader(csvfile)
         for ind,row in enumerate(reader):
             jdict[ind] = row[0:]	# the key is an index
