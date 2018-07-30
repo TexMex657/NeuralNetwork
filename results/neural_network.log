@@ -1,0 +1,228 @@
+[nadph] PS C:\Users\TexMex657\Documents\nadph\git\NeuralNetwork__> python .\ho_main.py
+
+
+ *** The neural network has 5 layers
+ *** with the following units per layer: [139, 139, 139, 139, 2]
+
+ *** The training set has 7123 entries.
+
+ X_train: (7123, 139)
+ [[ 0.  1.  5. ...  0.  0.  0.]
+ [ 0.  1. 15. ...  0.  0.  1.]
+ [ 0.  1. 25. ...  0.  0.  0.]
+ ...
+ [ 0.  1. 75. ...  0.  0.  1.]
+ [ 0.  1. 75. ...  0.  0.  1.]
+ [ 1.  0. 65. ...  0.  0.  0.]]
+
+ y_train: (7123, 2)
+ [[0 1]
+ [0 1]
+ [0 1]
+ ...
+ [0 1]
+ [0 1]
+ [0 1]]
+
+ *** The test set has 3052 entries.
+
+ X_test: (3052, 139)
+ [[ 1.  0. 65. ...  0.  0.  0.]
+ [ 1.  0. 75. ...  0.  0.  0.]
+ [ 0.  1. 85. ...  0.  0.  0.]
+ ...
+ [ 1.  0. 55. ...  0.  0.  0.]
+ [ 0.  1. 75. ...  0.  0.  1.]
+ [ 0.  1. 55. ...  0.  0.  0.]]
+
+ y_test: (3052, 2)
+ [[0 1]
+ [0 1]
+ [0 1]
+ ...
+ [0 1]
+ [0 1]
+ [0 1]]
+
+ *** The optimization of parameters will run in parallel for different lambdas.
+
+
+ ... training neural network for lambda=0.0000 (it may take a while)
+
+ ... training neural network for lambda=0.0100 (it may take a while)
+
+ ... training neural network for lambda=0.1000 (it may take a while)
+
+ ... training neural network for lambda=1.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.839906
+         Iterations: 26
+         Function evaluations: 2099
+         Gradient evaluations: 2087
+
+ ... training neural network for lambda=10.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 1.157004
+         Iterations: 1
+         Function evaluations: 53
+         Gradient evaluations: 41
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.803029
+         Iterations: 28
+         Function evaluations: 2278
+         Gradient evaluations: 2266
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.806484
+         Iterations: 29
+         Function evaluations: 2404
+         Gradient evaluations: 2392
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.802644
+         Iterations: 30
+         Function evaluations: 2423
+         Gradient evaluations: 2411
+lamda = 0.000 ; Jtrain = 0.80 , Acctrain = 88 % ; Jtest = 0.78 , Acctest = 89 %
+lamda = 0.010 ; Jtrain = 0.80 , Acctrain = 88 % ; Jtest = 0.78 , Acctest = 89 %
+lamda = 0.100 ; Jtrain = 0.81 , Acctrain = 88 % ; Jtest = 0.79 , Acctest = 89 %
+lamda = 1.000 ; Jtrain = 0.84 , Acctrain = 88 % ; Jtest = 0.86 , Acctest = 89 %
+lamda = 10.000 ; Jtrain = 1.16 , Acctrain = 88 % ; Jtest = 1.56 , Acctest = 89 %
+
+ *** The best accuracy of the predictor was for lambda = 0.000:  89 %
+
+ *** The optimal parameters are:
+theta 1 :  (139, 140)
+ [[ 0.11245265  0.01808261 -0.05516581 ... -0.08541739  0.02119694
+   0.14285538]
+ [-0.01812668  0.12194347 -0.00215765 ...  0.01694416 -0.1311527
+   0.09401865]
+ [-0.03058899  0.04469274 -0.10457818 ... -0.00432864  0.07833745
+  -0.11336474]
+ ...
+ [ 0.0580833  -0.07219499 -0.11296411 ... -0.13134191 -0.04381602
+  -0.10961306]
+ [ 0.03467939 -0.00992465 -0.04854177 ... -0.10849304  0.06620601
+  -0.14466739]
+ [-0.03013168 -0.1040249  -0.09433433 ...  0.01061921  0.10528537
+   0.0251656 ]]
+theta 2 :  (139, 140)
+ [[ 0.00070375 -0.08938717 -0.05641282 ... -0.08544542  0.01867026
+   0.03355025]
+ [ 0.02945735  0.16780404 -0.00193695 ...  0.01695667 -0.1304686
+   0.14095046]
+ [-0.03358455  0.04097693 -0.10332199 ... -0.00432555  0.08075331
+  -0.11765517]
+ ...
+ [ 0.13667516  0.00344021 -0.11244339 ... -0.13132146 -0.04226328
+  -0.03222678]
+ [ 0.19065675  0.14204557 -0.04879497 ... -0.10845471  0.06922079
+   0.01031219]
+ [ 0.01418353 -0.0603235  -0.09432286 ...  0.01063577  0.11059149
+   0.06963599]]
+theta 3 :  (139, 140)
+ [[ 0.00070375 -0.08938717 -0.05641282 ... -0.08544542  0.01867026
+   0.03355025]
+ [ 0.02945735  0.16780404 -0.00193695 ...  0.01695667 -0.1304686
+   0.14095046]
+ [-0.03358455  0.04097693 -0.10332199 ... -0.00432555  0.08075331
+  -0.11765517]
+ ...
+ [ 0.13667516  0.00344021 -0.11244339 ... -0.13132146 -0.04226328
+  -0.03222678]
+ [ 0.19065675  0.14204557 -0.04879497 ... -0.10845471  0.06922079
+   0.01031219]
+ [ 0.01418353 -0.0603235  -0.09432286 ...  0.01063577  0.11059149
+   0.06963599]]
+theta 4 :  (2, 140)
+ [[ 0.00070375 -0.03358455  0.02119584 -0.00110352 -0.01547024  0.14433119
+  -0.06153834 -0.12520299 -0.10841004 -0.02743548  0.07148727 -0.08159278
+  -0.12407793  0.09058734  0.19369235  0.0120798  -0.14163955 -0.04660906
+   0.06978737  0.06829962 -0.04735814  0.06980935  0.14443896 -0.09401629
+   0.08907185 -0.06566532 -0.03043303 -0.09366642 -0.14512155  0.02334718
+   0.03556502 -0.03159469 -0.15340307  0.1180626  -0.0180551  -0.1329127
+   0.06144028 -0.11593627  0.00909043 -0.12552258  0.07162862  0.09652771
+  -0.13924099  0.07662276  0.09600928 -0.14316563 -0.00626594 -0.04771616
+  -0.01580864  0.19116054  0.08701335  0.07295096  0.00323691  0.07496151
+  -0.08058664 -0.10068071  0.01326758 -0.08744329  0.0314684  -0.0194567
+   0.18643133  0.17679403 -0.05833183 -0.0249292   0.10413637  0.0140069
+  -0.01541967 -0.22332647  0.13667516  0.01418353  0.16780404  0.0872188
+  -0.07905592 -0.00786947 -0.06030804 -0.08827581  0.07864383  0.0647833
+   0.08033166  0.15609161  0.05930945  0.09563293 -0.02985091 -0.10457908
+  -0.13325318  0.15931684 -0.23475689  0.15434127 -0.01573081  0.06798018
+   0.16445846  0.13706132  0.01048547  0.07207403 -0.03142814 -0.21243678
+   0.15497917  0.18014121 -0.00313649 -0.03107609  0.00563491  0.1625931
+   0.05113466  0.01102674 -0.03126203  0.02838726 -0.16587216  0.01995091
+  -0.04503562 -0.09953085 -0.05248798 -0.16406787 -0.07582836  0.13240748
+  -0.09451721 -0.04799035 -0.04543978  0.05613954 -0.01008635  0.11988532
+   0.18891153 -0.13212019 -0.09435555 -0.02350915 -0.11517968  0.10945272
+  -0.12741644 -0.10357499 -0.01266376 -0.09162662  0.02910203  0.10817011
+  -0.09956893  0.0297189  -0.22350072  0.17355171 -0.1436567  -0.03357179
+   0.14204557 -0.05641282]
+ [ 0.02945735  0.10146936 -0.10725899 -0.03351394 -0.02765554 -0.14638054
+  -0.07520846  0.10140951  0.10090744  0.04276829 -0.18170812 -0.16644009
+   0.03462739 -0.09793732  0.02835339  0.01101402 -0.15217588 -0.01044558
+  -0.02605474  0.0011092   0.14017798  0.24501687 -0.08610767 -0.00939473
+  -0.05234788 -0.10068994  0.03752265 -0.04593186 -0.10340388  0.02892546
+  -0.05765354  0.14912135  0.02640646  0.11826543  0.00375152 -0.17338248
+   0.08720513 -0.0492408   0.04868832  0.00720485  0.08759084 -0.09129976
+   0.05325127 -0.0493827   0.10089066  0.11646388 -0.06157968 -0.06293206
+  -0.15711159 -0.08136611  0.01613487 -0.04614102  0.09372418  0.15697261
+  -0.04728519  0.09105461 -0.10693705  0.12537584  0.02312621 -0.05870764
+   0.08772905  0.11213722 -0.19516905  0.10044681 -0.03232356  0.1107447
+   0.08677421  0.06981805  0.19065675 -0.08938717  0.04097693  0.01902828
+  -0.17531256 -0.08454536  0.09566995 -0.11617408 -0.07536976 -0.04924931
+   0.1148786  -0.01817188  0.15676278  0.06388322  0.00153436  0.1406938
+  -0.22360665 -0.05326431 -0.01583158  0.06296511  0.09518528  0.05194121
+  -0.09120662  0.02391768  0.11247855 -0.01202636 -0.16427739  0.01323298
+  -0.09396302 -0.02327897  0.01938726  0.02762158  0.1737099  -0.02004357
+  -0.11333296 -0.07938382  0.11045451  0.01790266  0.04963221 -0.16263022
+   0.00570395  0.05909635  0.10574379 -0.07185477  0.1143476  -0.11316174
+  -0.19654875 -0.07057601  0.19387768  0.12165306  0.12522506  0.15665592
+   0.16604617  0.14696984 -0.12702683  0.14967919 -0.081367   -0.00479088
+   0.03434343  0.05186593  0.11799462  0.13713586 -0.03960735  0.13439634
+  -0.02561083 -0.05294555  0.0263136  -0.02651562  0.02765665  0.00344021
+  -0.0603235  -0.00193695]]
+
+ ... computing learning curves (Jtrain and Jtest) for a fraction 0.000100 of the full data set
+
+ ... training neural network for lambda=0.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.221636
+         Iterations: 3
+         Function evaluations: 180
+         Gradient evaluations: 168
+
+ ... computing learning curves (Jtrain and Jtest) for a fraction 0.001000 of the full data set
+
+ ... training neural network for lambda=0.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 1.094114
+         Iterations: 2
+         Function evaluations: 131
+         Gradient evaluations: 120
+
+ ... computing learning curves (Jtrain and Jtest) for a fraction 0.010000 of the full data set
+
+ ... training neural network for lambda=0.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 0.718511
+         Iterations: 1
+         Function evaluations: 111
+         Gradient evaluations: 99
+
+ ... computing learning curves (Jtrain and Jtest) for a fraction 0.100000 of the full data set
+
+ ... training neural network for lambda=0.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 1.010592
+         Iterations: 22
+         Function evaluations: 1700
+         Gradient evaluations: 1688
+
+ ... computing learning curves (Jtrain and Jtest) for a fraction 1.000000 of the full data set
+
+ ... training neural network for lambda=0.0000 (it may take a while)
+Warning: Desired error not necessarily achieved due to precision loss.
+         Current function value: 1.018336
+         Iterations: 2
+         Function evaluations: 120
+         Gradient evaluations: 109
