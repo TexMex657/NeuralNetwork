@@ -34,7 +34,7 @@ def F_countdiag(ldict,m,listsetdiag,ndiffdiag):
         to count the ocurrences of each diagnostic.
         Returns a dictionary: the keys are the diagnostic codes, the values are the number of ocurrences. """
     diagcount = {}
-    for row_ind in xrange(0,m):
+    for row_ind in range(0,m):
         for diag in ldict[row_ind][18:21]:
             if not diag in diagcount: # Special case if we're seeing this diagnostic code for the first time.
                 diagcount[diag] = 1
@@ -94,7 +94,7 @@ def F_createXymatrixes(ldict, K, fraction=1):
         # input 10: Number of inpatient visits of the patient in the year preceding the encounter
         mat_X[row_ind,9] = ldict[row_ind][17]
         # Primary+secondary+additional diagnostic (ndiffdiag~916 different classification values, only the top nselectdiag are used)
-        for dind in xrange(1,nselectdiag+1):
+        for dind in range(1,nselectdiag+1):
             mat_X[row_ind,9+dind] = 1 if (ldict[row_ind][18] == topdiag[dind-1] or ldict[row_ind][19] == topdiag[dind-1] or 
                                           ldict[row_ind][20] == topdiag[dind-1]) else 0
         # Number of diagnoses entered to the system
@@ -108,7 +108,7 @@ def F_createXymatrixes(ldict, K, fraction=1):
         # Indicates if there was any diabetic medication prescribed
         mat_X[row_ind,14+nselectdiag] = 1 if (ldict[row_ind][48] == 'Yes') else 0
         # inputs of 24 drugs:
-        for cind in xrange(0,ndrugs):
+        for cind in range(0,ndrugs):
             mat_X[row_ind,15+nselectdiag+cind] = 0 if (ldict[row_ind][24+cind] == 'No') else 1
 #            mat_X[row_ind,15+nselectdiag+cind] = 1 if (ldict[row_ind][24+cind] == 'Up') else 0
 
@@ -190,7 +190,7 @@ def F_paramUnroll( params, slarray ):
     theta_elems = [ 0 ] * L
     thetas = [ None ] * L
     theta_size = [ None ] * L
-    for ind in xrange(1,L):       # from 1 to (L-1)
+    for ind in range(1,L):       # from 1 to (L-1)
         theta_elems[ind] = (slarray[ind] + 1) * slarray[ind+1]
         theta_size[ind]  = (slarray[ind] + 1 , slarray[ind+1] )
         thetas[ind]      = params[theta_elems[ind-1]:(theta_elems[ind-1]+theta_elems[ind])].T.reshape( theta_size[ind] ).T
