@@ -25,12 +25,12 @@ def F_computeGradient(params, slarray, X, y, lamda, yk = None, X_bias = None, Fl
     # backpropagation
     sigma = [ None ] * (L+1) ; gradaccum = [ None ] * (L+1)
     sigma[L] = units_a[L] - yk
-    for ind in xrange((L-1),1,-1):	# from L-1 to 2
+    for ind in range((L-1),1,-1):	# from L-1 to 2
         sigma[ind] = thetas[ind].T.dot( sigma[ind+1] ) * F_sigmoidGradient( np.r_[np.ones((1, m)), poli_z[ind] ] )
         sigma[ind] = sigma[ind][1:,:]
 
     gradient = []
-    for ind in xrange(1,L):		# from 1 to L
+    for ind in range(1,L):		# from 1 to L
         gradaccum[ind]       = sigma[ind+1].dot(  units_a[ind].T ) / m
         gradaccum[ind][:,1:] = gradaccum[ind][:,1:] + (thetas[ind][:,1:] * lamda / m)
         gradient = gradient + gradaccum[ind].T.reshape(-1).tolist()
@@ -50,7 +50,7 @@ def F_feedForward(thetas, L, X, X_bias = None):
     poli_z  = [ None] * (L+1)
     units_a[1] = np.r_[one_rows, X.T]  if X_bias is None else X_bias  # a1
 
-    for ind in xrange(2,L+1):	# from 2 to L
+    for ind in range(2,L+1):	# from 2 to L
         poli_z[ind]  = thetas[ind-1].dot( units_a[ind-1] ) 		# z2 = theta1*a1, z3 = ...
         units_a[ind] = F_sigmoid(poli_z[ind])				# a2 = g(z2), a3 = ...
         if ind != L: units_a[ind] = np.r_[one_rows, units_a[ind]] 	# adds bias row to ai except for last a
@@ -77,7 +77,7 @@ def F_computeCost(params, slarray, X, y, lamda, yk = None, X_bias = None):
     left_term 	= np.sum(term1 - term2) / m
 
     right_term = np.sum(thetas[1][:,1:] ** 2)
-    for ind in xrange(2,L):	# from 2 to L-1
+    for ind in range(2,L):	# from 2 to L-1
         right_term = right_term + np.sum(thetas[ind][:,1:] ** 2)
     right_term = right_term * lamda / (2 * m)
     cost = left_term + right_term
@@ -114,7 +114,7 @@ def F_predict(Xm, thetas, L):
     poli_z = [ None] * (L+1)
     units_a[1] = np.r_[np.ones((1, 1)), Xm.reshape( np.shape(Xm)[0], 1 )]	# a1
 
-    for ind in xrange(2,L+1):     # from 2 to L
+    for ind in range(2,L+1):     # from 2 to L
         poli_z[ind]  = thetas[ind-1].dot( units_a[ind-1] )          # z2 = theta1*a1, z3 = ...
         units_a[ind] = F_sigmoid(poli_z[ind])                               # a2 = g(z2), a3 = ...
         if ind != L: units_a[ind] = np.r_[np.ones((1, 1)), units_a[ind]]   # adds bias row to ai except for last a

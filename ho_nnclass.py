@@ -69,7 +69,7 @@ class NeuralNetwork(object):
         print('\n *** The best accuracy of the predictor was for lambda = %.3f:  %d %%' % (self.lams[self.indexofmaxaccuracy], self.Accs_test[self.indexofmaxaccuracy]))
         print('\n *** The optimal parameters are:')
         thetas = F_paramUnroll(self.params_opt[self.indexofmaxaccuracy], self.sl)
-        for ind in xrange(1,len(thetas)):
+        for ind in range(1,len(thetas)):
             print('theta',ind,': ',np.shape(thetas[ind]),'\n',thetas[ind])
 
     def F_printnninfo(self):
@@ -101,7 +101,7 @@ class NeuralNetwork(object):
             and all the layers in between (the hidden layers) with s_l=s1 """
         slarray = [ None ] * (self.L+1)        # first tem slarray[0] will be kept empty (None)
         slarray[1] = self.s1               # the array with the number of units of layer l (sl) starts with s1
-        for ind in xrange(2,self.L) : slarray[ind] = self.s1   # all hidden layers have sl=s1
+        for ind in range(2,self.L) : slarray[ind] = self.s1   # all hidden layers have sl=s1
         slarray[self.L] = self.K        # the output layer has a specific number of units
         return slarray
 
@@ -112,7 +112,7 @@ class NeuralNetwork(object):
         assert self.L == (len(self.sl)-1), "ERROR, len(slarray)-1 must be equal to L"
         thetasmatrixlist = [ None ] * self.L       # a list with L elements, the first (thetasmatrixlist[0]=None) is useless,
                                         # and each other element is a matrix of dimension s_(i+1) x (s_i + 1)
-        for ind in xrange(1,self.L):       # from 1 to L-1
+        for ind in range(1,self.L):       # from 1 to L-1
             thetasmatrixlist[ind] = F_randInitializeWeights(self.sl[ind],self.sl[ind+1])
         return thetasmatrixlist
 

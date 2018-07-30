@@ -77,7 +77,10 @@ def F_createXymatrixes(ldict, K, fraction=1):
         # input 3: age
         str = ldict[row_ind][4]
         tuple = re.search(r'\[(\d+)-(\d+)\)',str)
-        age = (int(tuple.group(2))+int(tuple.group(1)))/2 # the age is calculated a the mean of the interval
+        try:
+            age = (int(tuple.group(2))+int(tuple.group(1)))/2 # the age is calculated a the mean of the interval
+        except AttributeError:
+            print('debug')
         mat_X[row_ind,2] = age
         # input 4: time in hospital in days
         mat_X[row_ind,3] = ldict[row_ind][9]
