@@ -121,7 +121,7 @@ def F_createXymatrixes(ldict, K, fraction=1):
             elif ldict[row_ind][49] == '<30':
                 mat_y[row_ind,0:3] = [ 1, 0, 0 ]
             else:
-                print 'ERROR: data value %s not expected' % ldict[row_ind][49]
+                print('ERROR: data value %s not expected' % ldict[row_ind][49])
                 sys.exit()
         elif K==2:
             if ldict[row_ind][49] == '<30': # or ldict[row_ind][49] == '>30':
@@ -129,7 +129,7 @@ def F_createXymatrixes(ldict, K, fraction=1):
             else:
                 mat_y[row_ind,0:2] = [ 0, 1 ]
         else:
-            print 'ERROR: only 2 or 3 outputs are possible, not K=',K
+            print('ERROR: only 2 or 3 outputs are possible, not K=',K)
             sys.exit() 
 
     # the order of the set is randomized: (not necessary anymore, as the randomization is done previously)
@@ -171,7 +171,7 @@ def F_allthetasinacolumn(L, thetas):
                            thetas[3].T.reshape(-1).tolist() + thetas[4].T.reshape(-1).tolist() + 
                            thetas[5].T.reshape(-1).tolist()]).T 
     else:
-        print "ERROR: the network architecture cannot have %i layers, sorry" % L
+        print("ERROR: the network architecture cannot have %i layers, sorry" % L)
         sys.exit()
     return params
 

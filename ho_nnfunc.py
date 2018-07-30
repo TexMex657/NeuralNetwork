@@ -147,7 +147,7 @@ def F_testtrainsingle(ind, lamda, params, sl, X_train, y_train, yk_train, Xbias_
         For the training (optimization of parameters) uses scipy.optimize.fmin_cg().
         Returns the optimized parameters thetas (in a row instead of original matrixes) and the
         cost functions and accuracies of the training and test sets. """
-    print '\n ... training neural network for lambda=%.4f (it may take a while)' % lamda
+    print('\n ... training neural network for lambda=%.4f (it may take a while)' % lamda)
     params_opt = scipy.optimize.fmin_cg( F_computeCost, x0=params, fprime=F_computeGradient, \
                                           args=( sl, X_train, y_train, lamda, yk_train, Xbias_train), \
                                           maxiter=1000, disp=True )  # with full_output=True take output [0]

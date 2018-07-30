@@ -27,13 +27,13 @@ class NeuralNetwork(object):
         # Number of units in output layer:
         self.K          = np.shape(y)[1]
         # Number of units in each layer:
-        self.sl         = self.F_createslarray() 		# all hidden layers have sl=s1
+        self.sl         = self.F_createslarray()         # all hidden layers have sl=s1
         # Regularization parameter(s):
-        self.lams       = lambdas                     		# an array, to try different values if needed
+        self.lams       = lambdas                             # an array, to try different values if needed
         # Parameters thetas:
-        self.thetas     = self.F_createthetasmatrixlist()  	# a list with L elements, the first (thetasmatrixlist[0]=None) is useless, and each other element is a matrix of dimension s_(i+1) x (s_i + 1)
+        self.thetas     = self.F_createthetasmatrixlist()      # a list with L elements, the first (thetasmatrixlist[0]=None) is useless, and each other element is a matrix of dimension s_(i+1) x (s_i + 1)
         self.params     = self.F_allthetasinarow()
-        self.params_opt = [None]*len(lambdas)			# here we will store the optimized parameters (after training)
+        self.params_opt = [None]*len(lambdas)            # here we will store the optimized parameters (after training)
         # Initialize cost row(s):
         self.Js_train   = np.array(np.zeros(len(lambdas)))
         self.Js_test    = np.array(np.zeros(len(lambdas)))
@@ -49,7 +49,7 @@ class NeuralNetwork(object):
             Both training and testing functions are called through F_testtrainsingle() (function in ho_nnfunc),
             for a simpler implementation of the parallelization. """
         num_cores = multiprocessing.cpu_count()
-        if len(self.lams)>1: print '\n *** The optimization of parameters will run in parallel for different lambdas.\n'
+        if len(self.lams)>1: print('\n *** The optimization of parameters will run in parallel for different lambdas.\n')
         tupleout = Parallel(n_jobs=num_cores)(delayed(F_testtrainsingle)
                              (ind,lamda, self.params, self.sl, self.X_train, self.y_train, self.yk_train, self.Xbias_train, self.m_train,
                              self.X_test, self.y_test, self.yk_test, self.Xbias_test, self.m_test) for ind,lamda in enumerate(self.lams) )
@@ -62,28 +62,28 @@ class NeuralNetwork(object):
         # Writing results in screen and in file: 
         f = open('lam.Jtra.Acc.Jte.Acc.dat', 'a')
         for lamda, Jtrain, Acc1, Jtest, Acc2 in zip(self.lams, self.Js_train, self.Accs_train, self.Js_test, self.Accs_test):
-            print 'lamda = %.3f ; Jtrain = %.2f , Acctrain = %d %% ; Jtest = %.2f , Acctest = %d %%' % (lamda, Jtrain, Acc1, Jtest, Acc2)      
+            print('lamda = %.3f ; Jtrain = %.2f , Acctrain = %d %% ; Jtest = %.2f , Acctest = %d %%' % (lamda, Jtrain, Acc1, Jtest, Acc2))      
             f.write("%.3f %.2f %d %.2f %d\n" % (lamda, Jtrain, Acc1, Jtest, Acc2))
         f.close()
         # Prints the parameters thetas for the lamda that gave the maximum accuracy:
-        print '\n *** The best accuracy of the predictor was for lambda = %.3f:  %d %%' % (self.lams[self.indexofmaxaccuracy], self.Accs_test[self.indexofmaxaccuracy])
-        print '\n *** The optimal parameters are:'
+        print('\n *** The best accuracy of the predictor was for lambda = %.3f:  %d %%' % (self.lams[self.indexofmaxaccuracy], self.Accs_test[self.indexofmaxaccuracy]))
+        print('\n *** The optimal parameters are:')
         thetas = F_paramUnroll(self.params_opt[self.indexofmaxaccuracy], self.sl)
         for ind in xrange(1,len(thetas)):
-            print 'theta',ind,': ',np.shape(thetas[ind]),'\n',thetas[ind]
+            print('theta',ind,': ',np.shape(thetas[ind]),'\n',thetas[ind])
 
     def F_printnninfo(self):
-        print '\n\n *** The neural network has %i layers' % self.L
-        print ' *** with the following units per layer:', self.sl[1:]
-        print '\n *** The training set has %d entries.' % np.shape(self.X_train)[0]
-        print '\n X_train:',np.shape(self.X_train),'\n',self.X_train
-        print '\n y_train:',np.shape(self.y_train),'\n',self.y_train
-        print '\n *** The test set has %d entries.' % np.shape(self.X_test)[0]
-        print '\n X_test:',np.shape(self.X_test),'\n',self.X_test
-        print '\n y_test:',np.shape(self.y_test),'\n',self.y_test
+        print('\n\n *** The neural network has %i layers' % self.L)
+        print(' *** with the following units per layer:', self.sl[1:])
+        print('\n *** The training set has %d entries.' % np.shape(self.X_train)[0])
+        print('\n X_train:',np.shape(self.X_train),'\n',self.X_train)
+        print('\n y_train:',np.shape(self.y_train),'\n',self.y_train)
+        print('\n *** The test set has %d entries.' % np.shape(self.X_test)[0])
+        print('\n X_test:',np.shape(self.X_test),'\n',self.X_test)
+        print('\n y_test:',np.shape(self.y_test),'\n',self.y_test)
 
     def F_allthetasinarow(self):
-    """ Creates the 'params' array, which consists of all the elements in the matrixes thetas together. """
+        """ Creates the 'params' array, which consists of all the elements in the matrixes thetas together. """
         # note that self.thetas[0] is avoided because is a useless None
         if self.L==3:
             params = np.r_[self.thetas[1].T.flatten(), self.thetas[2].T.flatten()]
@@ -92,15 +92,15 @@ class NeuralNetwork(object):
         elif self.L==5:
             params = np.r_[self.thetas[2].T.flatten(), self.thetas[2].T.flatten(), self.thetas[3].T.flatten(), self.thetas[4].T.flatten()]
         else:
-            print "ERROR: the network architecture cannot have %i layers, sorry" % self.L
+            print("ERROR: the network architecture cannot have %i layers, sorry" % self.L)
             sys.exit()
         return params
 
     def F_createslarray(self):
         """ Creates an array with s_1, s_2, ..., s_(L-1), s_L, with s_1 pre-defined, s_L=K also predefined,
             and all the layers in between (the hidden layers) with s_l=s1 """
-        slarray = [ None ] * (self.L+1)    	# first tem slarray[0] will be kept empty (None)
-        slarray[1] = self.s1       		# the array with the number of units of layer l (sl) starts with s1
+        slarray = [ None ] * (self.L+1)        # first tem slarray[0] will be kept empty (None)
+        slarray[1] = self.s1               # the array with the number of units of layer l (sl) starts with s1
         for ind in xrange(2,self.L) : slarray[ind] = self.s1   # all hidden layers have sl=s1
         slarray[self.L] = self.K        # the output layer has a specific number of units
         return slarray
@@ -134,11 +134,11 @@ class NeuralNetwork(object):
         numgrad  = F_computeNumericalGradient( self.params, self.sl, self.X_train, self.y_train, self.lams[0] )
         diffvect = gradient.T - numgrad
         diffnum  = sum(np.abs(diffvect[0]))/len(diffvect[0])
-        print '\n *** Differences between gradient computed and numerical:\n',diffnum
+        print('\n *** Differences between gradient computed and numerical:\n',diffnum)
         if diffnum > 1.e-6:
-            print '\n\n ATTENTION: difference between numerical gradient and function is too large, diff=',diffnum 
-            print '\n\n gradient from F_computeGradient:\n',gradient
-            print 'gradient from F_computeNumericalGradient:\n',numgrad
+            print('\n\n ATTENTION: difference between numerical gradient and function is too large, diff=',diffnum)
+            print('\n\n gradient from F_computeGradient:\n',gradient)
+            print('gradient from F_computeNumericalGradient:\n',numgrad)
             sys.exit()
 
 
@@ -150,7 +150,7 @@ def F_calcLearingCurve(ldict, K, NN):
     lambdas[0] = NN.lams[NN.indexofmaxaccuracy]     # an array with only one value, the lambda that produced the best accuracy of the predictor
     f = open('LearningCurves.dat', 'a')
     for fraction in fractionsoffulldataset:
-        print '\n ... computing learning curves (Jtrain and Jtest) for a fraction %f of the full data set' % fraction
+        print('\n ... computing learning curves (Jtrain and Jtest) for a fraction %f of the full data set' % fraction)
         X, y = F_createXymatrixes(ldict, K, fraction=fraction)
         NNn  = NeuralNetwork(X, y, NN.L, lambdas)      # a new neural network with a fraction of the size of the original 
         NNn.F_traintest()
